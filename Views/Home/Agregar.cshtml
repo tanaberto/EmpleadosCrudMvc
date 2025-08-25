@@ -1,0 +1,34 @@
+﻿@{
+	ViewData["Title"] = "Agregar Empleados";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Agregar empleados</p>
+
+<form asp-action="Agregar" method="post">
+	@* <div class="form-group">
+		<label for="Codigo">Código</label>
+		<input type="number" class="form-control" id="Codigo" name="Codigo" required />
+	</div> *@
+	<div class="form-group">
+		<label for="Nombre">Nombre</label>
+		<input type="text" class="form-control" id="Nombre" name="Nombre" required />
+	</div>
+	<div class="form-group">
+		<label for="Puesto">Puesto</label>
+		<input type="text" class="form-control" id="Puesto" name="Puesto" required />
+	</div>
+	<div class="form-group">
+		<label for="CodigoJefe">Código Jefe</label>
+		<input type="number" class="form-control" id="CodigoJefe" name="CodigoJefe" />
+	</div>
+	<br/>
+	<button type="submit" class="btn btn-primary">Agregar</button>
+</form>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        alert('@TempData["ErrorMessage"]');
+    </script>
+}

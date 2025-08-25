@@ -1,0 +1,32 @@
+﻿@model List<EmpleadosCrudMvc.Models.Empleado>
+
+@{
+	ViewData["Title"] = "Eliminar Empleados";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Nombre</th>
+			<th>Puesto</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var empleado in Model)
+		{
+			<tr>
+				<td>@empleado.Nombre</td>
+				<td>@empleado.Puesto</td>
+				<td>
+					<form asp-action="Eliminar" method="post" style="display:inline;">
+						<input type="hidden" name="Id" value="@empleado.Codigo" />
+						<button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+					</form>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

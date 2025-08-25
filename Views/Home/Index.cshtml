@@ -1,0 +1,46 @@
+﻿@model List<EmpleadosCrudMvc.Models.Empleado>
+
+<div class="text-center">
+	<h1 class="display-4">Bienvenido</h1>
+	<p>
+		Esta aplicación que permite mostrar un árbol de jerarquía en base a una tabla
+		que contiene información de las plazas/empleados de una Empresa. Tomar en cuenta que la tabla es
+		recursiva. Adicional también debe de permitir insertar, modificar y eliminar registros de dicha tabla.
+	</p>
+</div>
+
+
+@{
+	void RenderTree(int? jefeId)
+	{
+		var hijos = Model.Where(e => e.CodigoJefe == jefeId).ToList();
+		if (hijos.Any())
+		{
+			<ul>
+				@foreach (var hijo in hijos)
+				{
+					<li>
+						@hijo.Codigo - <strong>@hijo.Nombre</strong> - @hijo.Puesto
+						@{
+							var tieneSubordinados = Model.Any(e => e.CodigoJefe == hijo.Codigo);
+							if (tieneSubordinados)
+							{
+								RenderTree(hijo.Codigo);
+							}
+							else
+							{
+								<span class="text-muted"> (Sin subordinados)</span>
+							}
+						}
+					</li>
+				}
+			</ul>
+		}
+	}
+
+	RenderTree(null);
+}
+
+
+<h1>@ViewData["Title"]</h1>
+

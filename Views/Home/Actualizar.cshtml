@@ -1,0 +1,45 @@
+﻿@model List<EmpleadosCrudMvc.Models.Empleado>
+
+@{
+	ViewData["Title"] = "Actualizar datos de los empleados";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Código</th>
+			<th>Jefe</th>
+			<th>Nombre</th>
+			<th>Puesto</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var empleado in Model)
+		{
+			<tr>
+				<form asp-action="ActualizarEmpleado" method="post">
+				<td>
+					<input type="hidden" name="Codigo" value="@empleado.Codigo" />
+					@empleado.Codigo
+				</td>
+				<td>
+					<input type="hidden" name="CodigoJefe" value="@empleado.CodigoJefe" />
+					@empleado.CodigoJefe
+				</td>
+				<td>
+					<input type="text" name="Nombre" value="@empleado.Nombre" class="form-control" />
+				</td>
+				<td>
+					<input type="text" name="Puesto" value="@empleado.Puesto" class="form-control" />
+				</td>
+				<td>
+					<button type="submit" class="btn btn-primary btn-sm">Actualizar</button>
+				</td>
+				</form>
+			</tr>
+		}
+	</tbody>
+</table>
